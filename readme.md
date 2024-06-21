@@ -23,8 +23,8 @@ If you love what I'm doing with Android Network Tools and my other projects, you
 
 ### Sample app
 
-The sample app is published on Google Play & F-Droid to allow you to quickly and easier test the library. Enjoy! And please do feedback to us if your tests produce different results. 
- 
+示例应用程序发布在Google Play&F-Droid上，以便您快速、轻松地测试库。享受吧！如果你的测试结果不同，请给我们反馈。
+
 [<img src="https://fdroid.gitlab.io/artwork/badge/get-it-on.png"
      alt="Get it on F-Droid"
      height="70">](https://f-droid.org/packages/com.stealthcotper.networktools/)
@@ -35,10 +35,9 @@ The sample app is published on Google Play & F-Droid to allow you to quickly and
 ## Usage
 
 ### Add as dependency
-This library is not yet released in Maven Central, until then you can add as a library module or use JitPack.io
+这个库尚未在Maven Central中发布，在此之前，您可以将其添加为库模块或使用JitPack.io
 
-add remote maven url
-
+添加远程maven url
 ```groovy
 
     repositories {
@@ -47,8 +46,8 @@ add remote maven url
         }
     }
 ```
-    
-then add a library dependency. **Remember** to check for latest release [here](https://github.com/stealthcopter/AndroidNetworkTools/releases/) 
+
+然后添加库依赖项。记得在这里查看最新版本
 
 ```groovy
     dependencies {
@@ -57,15 +56,14 @@ then add a library dependency. **Remember** to check for latest release [here](h
 ```
 
 ### Add permission
-Requires internet permission (obviously...)
+需要internet权限(obviously...）
 ```xml
   <uses-permission android:name="android.permission.INTERNET" />
 ```
 
 ### Port Scanning
 
-A simple java based TCP / UDP port scanner, fast and easy to use. By default it will try and guess the best timeout and threads to use while scanning depending on if the address looks like localhost, local network or remote. You can override these yourself by calling setNoThreads() and setTimeoutMillis()
-
+一个简单的基于java的TCP/UDP端口扫描程序，快速易用。默认情况下，它会根据地址是localhost、local network还是remote来猜测扫描时使用的最佳超时和线程。您可以通过调用setNoThreads（）和setTimeoutMillis（）来重写这些参数
 ```java
     // Synchronously
     ArrayList<Integer> openPorts = PortScan.onAddress("192.168.0.1").setMethodUDP().setPort(21).doScan();
@@ -87,8 +85,7 @@ A simple java based TCP / UDP port scanner, fast and easy to use. By default it 
 
 ### Subnet Devices
 
-Finds devices that respond to ping that are on the same subnet as the current device. You can set the timeout for the ping with setTimeOutMillis() \[default 2500\] and the number of threads with setNoThreads() \[default 255\]
-
+查找与当前设备在同一子网中响应ping的设备。您可以使用setTimeOutMillis（）[默认值2500]设置ping的超时值，使用setNoThreads（）设置线程数[默认值255]
 ```
     // Asynchronously
     SubnetDevices.fromLocalAddress().findDevices(new SubnetDevices.OnSubnetDeviceFound() {
@@ -107,8 +104,7 @@ Finds devices that respond to ping that are on the same subnet as the current de
 
 ### Ping
 
-Uses the native ping binary if available on the device (some devices come without it) and falls back to a TCP request on port 7 (echo request) if not.
-
+如果设备上有本机ping二进制文件（有些设备没有），则使用本机ping二进制文件；如果没有，则返回到端口7上的TCP请求（echo请求）。
 ```java
      // Synchronously 
      PingResult pingResult = Ping.onAddress("192.168.0.1").setTimeOutMillis(1000).doPing();
@@ -122,14 +118,13 @@ Uses the native ping binary if available on the device (some devices come withou
     });
 ```
 
-Note: If we do have to fall back to using TCP port 7 (the java way) to detect devices we will find significantly less than with the native ping binary. If this is an issue you could consider adding a ping binary to your application or device so that it is always available.
+注意：如果我们不得不使用TCP端口7（java方式）来检测设备，我们会发现比使用本机ping二进制文件要少得多。如果这是一个问题，您可以考虑添加一个ping二进制文件到您的应用程序或设备，使它始终可用。
 
-
-Note: If you want a more advanced portscanner you should consider compiling nmap into your project and using that instead.
+注意：如果您想要一个更高级的portscanner，您应该考虑将nmap编译到您的项目中并使用它。
 
 ### Wake-On-Lan
 
-Sends a Wake-on-Lan packet to the IP / MAC address
+向IP/MAC地址发送Wake-on-Lan数据包
 
 ```java
       String ipAddress = "192.168.0.1";
@@ -139,7 +134,7 @@ Sends a Wake-on-Lan packet to the IP / MAC address
 
 ### Misc
 
-Other useful methods:
+其他有用方法：
 
 ```java
       // Get a MAC Address from an IP address in the ARP Cache
@@ -149,14 +144,14 @@ Other useful methods:
 
 ## Building
 
-It's a standard gradle project.
+这是一个标准的gradle项目。
 
 # Contributing
 
-I welcome pull requests, issues and feedback.
+我欢迎拉请求，问题和反馈。
 
-- Fork it
-- Create your feature branch (`git checkout -b my-new-feature`)
-- Commit your changes (`git commit -am 'Added some feature'`)
-- Push to the branch (`git push origin my-new-feature`)
-- Create new Pull Request
+Fork it
+创建特性分支（git checkout-bmy-new-feature）
+提交您的更改（git Commit-am“添加了一些功能”）
+推送到分支（git Push originmy-new-feature）
+创建新的请求请求
